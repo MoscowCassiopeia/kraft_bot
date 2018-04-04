@@ -9,8 +9,9 @@ from telegram.ext import Filters
 from telegram.ext import CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import logging
+import os
 
-TOKEN = 'Сюда вставить токен вашего бота'
+TOKEN = os.environ['TOKEN_BOT']
 
 updater = Updater(token=TOKEN)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
