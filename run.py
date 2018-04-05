@@ -13,8 +13,8 @@ import logging
 import os
 
 
-#TOKEN = os.environ['TOKEN_BOT']
-TOKEN = '554622642:AAETWF2704zD_DynyX56vbFgjZRk3PZqwDE'
+TOKEN = os.environ['TOKEN_BOT']
+
 
 updater = Updater(token=TOKEN)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
