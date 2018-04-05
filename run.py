@@ -1,5 +1,5 @@
 '''
-Бот написан по заказу. Представляет из себе небольшой путеводитель.
+Бот представляет из себе небольшой путеводитель.
 '''
 
 from telegram.ext import Updater
@@ -91,6 +91,12 @@ def customer(bot, update):
     #bot.send_message(chat_id=update.callback_query.message.chat_id,
     #                 text=msg_txt, reply_markup=get_customer_menu())
 
+def home_remodeling(bot, update):
+    msg_txt = 'https://t.me/joinchat/F_WOpxElLB7VAGST8O8ZkA'
+    
+    bot.send_message(chat_id=update.callback_query.message.chat_id,
+                     text=msg_txt)
+
 def stub(bot, update):
     bot.send_message(chat_id=update.callback_query.message.chat_id,
                      text='stub is run...')
@@ -103,8 +109,11 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(master, pattern='master'))
     dispatcher.add_handler(CallbackQueryHandler(customer, pattern='customer'))
     dispatcher.add_handler(CallbackQueryHandler(general_menu, pattern='get_general_menu'))    
+
+    dispatcher.add_handler(CallbackQueryHandler(home_remodeling, pattern='home_remodeling'))
     dispatcher.add_handler(CallbackQueryHandler(stub,
-        pattern='home_remodeling|auto_repair|repair_appliances|cargo_transportation'))    
+                    pattern='auto_repair|repair_appliances|cargo_transportation'))    
+
     dispatcher.add_error_handler(error)
     updater.start_polling()
     updater.idle()
