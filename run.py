@@ -8,10 +8,13 @@ from telegram.ext import MessageHandler
 from telegram.ext import Filters
 from telegram.ext import CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+import show_links
 import logging
 import os
 
-TOKEN = os.environ['TOKEN_BOT']
+
+#TOKEN = os.environ['TOKEN_BOT']
+TOKEN = '554622642:AAETWF2704zD_DynyX56vbFgjZRk3PZqwDE'
 
 updater = Updater(token=TOKEN)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -91,15 +94,12 @@ def customer(bot, update):
     #bot.send_message(chat_id=update.callback_query.message.chat_id,
     #                 text=msg_txt, reply_markup=get_customer_menu())
 
-def home_remodeling(bot, update):
-    msg_txt = 'https://t.me/joinchat/F_WOpxElLB7VAGST8O8ZkA'
-    
-    bot.send_message(chat_id=update.callback_query.message.chat_id,
-                     text=msg_txt)
 
-def stub(bot, update):
-    bot.send_message(chat_id=update.callback_query.message.chat_id,
-                     text='stub is run...')
+#def stub(bot, update):
+#    bot.send_message(chat_id=update.callback_query.message.chat_id,
+ #                    text='stub is run...')
+    #bot.send_message(chat_id=update.callback_query.message.chat_id,
+    #                 text=update.callback_query.data)
     
 
 def main():    
@@ -110,9 +110,12 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(customer, pattern='customer'))
     dispatcher.add_handler(CallbackQueryHandler(general_menu, pattern='get_general_menu'))    
 
-    dispatcher.add_handler(CallbackQueryHandler(home_remodeling, pattern='home_remodeling'))
-    dispatcher.add_handler(CallbackQueryHandler(stub,
-                    pattern='auto_repair|repair_appliances|cargo_transportation'))    
+    dispatcher.add_handler(CallbackQueryHandler(show_links.home_remodeling, pattern='home_remodeling'))
+    dispatcher.add_handler(CallbackQueryHandler(show_links.auto_repair, pattern='auto_repair'))
+    dispatcher.add_handler(CallbackQueryHandler(show_links.repair_appliances, pattern='repair_appliances'))
+    dispatcher.add_handler(CallbackQueryHandler(show_links.cargo_transportation, pattern='cargo_transportation'))
+    #dispatcher.add_handler(CallbackQueryHandler(stub,
+    #                pattern='auto_repair|repair_appliances|cargo_transportation'))    
 
     dispatcher.add_error_handler(error)
     updater.start_polling()
